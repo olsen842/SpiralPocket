@@ -1,3 +1,5 @@
+import math
+
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 
@@ -123,7 +125,6 @@ class GcodeApp(tk.Tk):
 
     def _read_params(self):
         """Read and validate form fields, returning a kwargs dict."""
-        import math
         v = self.vars
 
         field_labels = {key: label for key, label, _ in FIELDS}
