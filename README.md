@@ -44,6 +44,44 @@ Simulator playback close-up:
   - **Open previously generated files** — re-loads the parameters from the
     comment header back into the form.
 
+## Installation
+
+You need Python 3 with tkinter, plus matplotlib.
+
+**1. Get the code** — either clone with git:
+
+```bash
+git clone https://github.com/olsen842/SpiralPocket.git
+cd SpiralPocket
+```
+
+or download the ZIP from GitHub (green **Code** button → **Download ZIP**)
+and unpack it.
+
+**2. Install the dependency:**
+
+```bash
+pip3 install -r requirements.txt
+```
+
+**3. Linux only** — tkinter is often a separate package. If you get
+`ModuleNotFoundError: No module named 'tkinter'`, install it with your
+package manager:
+
+```bash
+# Debian / Ubuntu / Mint (also most LinuxCNC installs):
+sudo apt install python3-tk
+
+# Fedora:
+sudo dnf install python3-tkinter
+
+# Arch:
+sudo pacman -S tk
+```
+
+On Windows and macOS, tkinter ships with the standard Python installer
+from [python.org](https://www.python.org/downloads/).
+
 ## Usage
 
 Run the GUI:
@@ -51,6 +89,11 @@ Run the GUI:
 ```bash
 python3 gui.py
 ```
+
+Fill in your stock and part dimensions, tool diameter, feeds and speeds,
+then **Preview** the toolpath, **Generate** the G-code, and **Save...** it
+as a `.ngc` file you can open in LinuxCNC. The Simulator tab plays back
+the toolpath so you can verify it before cutting.
 
 Or use the generator as a library:
 
@@ -82,12 +125,10 @@ print(gcode)
 
 ## Requirements
 
-- Python 3
-- `matplotlib` (`pip install -r requirements.txt`)
-
-tkinter ships with most Python installs; on some Linux distros it needs to
-be installed separately (e.g. `apt install python3-tk`).
+- Python 3 (with tkinter — see [Installation](#installation) for Linux)
+- `matplotlib`
 
 ## License
 
 MIT — see [LICENSE](LICENSE).
+ 
