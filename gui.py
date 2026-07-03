@@ -14,18 +14,18 @@ from gcode_parser import parse_header, parse_toolpath
 
 
 FIELDS = [
-    ("x_start", "X start", "0"),
-    ("y_start", "Y start", "0"),
-    ("total_width", "Stock width", "205"),
-    ("total_height", "Stock height", "205"),
-    ("desired_width", "Desired width", "200"),
-    ("desired_height", "Desired height", "200"),
+    ("x_start", "Part origin X", "0"),
+    ("y_start", "Part origin Y", "0"),
+    ("total_width", "Stock width (X)", "205"),
+    ("total_height", "Stock height (Y)", "205"),
+    ("desired_width", "Part width (X)", "200"),
+    ("desired_height", "Part height (Y)", "200"),
     ("cut_step", "Stepover (cut_step)", "0.5"),
     ("tool_diameter", "Tool diameter", "10.0"),
     ("cut_depth", "Total depth", "6.0"),
     ("pass_depth", "Depth per pass (blank = single pass)", "2.0"),
-    ("feed", "Feed rate", "100"),
-    ("plunge_feed", "Plunge feed rate", "100"),
+    ("feed", "Feed rate (per min)", "100"),
+    ("plunge_feed", "Plunge feed (Z, per min)", "100"),
     ("rpm", "Spindle RPM", "1000"),
     ("safe_z", "Safe Z height", "5.0"),
     ("spindle_dwell", "Spindle dwell (s, 0 = none)", "0"),
@@ -405,7 +405,8 @@ class GcodeApp(tk.Tk):
 
         if update_scale:
             total = len(self.sim_waypoints) - 1
-            self.sim_progress.set(self.sim_index / total if total > 0 else 0)
+            self.sim_progress.set(self.sim_index
+             / total if total > 0 else 0)
 
         move = "Rapid" if rapid else "Cutting"
         self.sim_status_var.set(
